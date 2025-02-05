@@ -8,14 +8,31 @@
 */
 
 const flags = {
-    '-t': translation,
+    // '-t': translation,
     '-z': scaling,
-    '-r': rotation,
-    '-s': reflection,
+    // '-r': rotation,
+    // '-s': reflection,
     '-h': help,
 };
 
-function help(){
+function scaling(args)
+{
+    let nb1 = parseFloat(args[0]) * parseFloat(args[3]);
+    let nb2 = parseFloat(args[1]) * parseFloat(args[4]);
+
+    console.log(`Scaling by factors ${args[3]} and ${args[4]}`);
+    console.log(`${parseFloat(args[3]).toFixed(2)}\t0.00\t0.00`);
+    console.log(`0.00\t${parseFloat(args[3]).toFixed(2)}\t0.00`);
+    console.log(`0.00\t0.00\t1.00`);
+    process.stdout.write(`(${parseFloat(args[0]).toFixed(2)}, `);
+    process.stdout.write(`${parseFloat(args[1]).toFixed(2)})`);
+    process.stdout.write(` => `);
+    process.stdout.write(`(${(nb1).toFixed(2)}, `);
+    process.stdout.write(`${(nb2).toFixed(2)})\n`);
+}
+
+function help()
+{
     console.log("USAGE");
     console.log("    ./102architect x y transfo1 arg11 [arg12] [transfo2 arg21 [arg22]] ...\n\n");
     console.log("DESCRIPTION");
@@ -35,7 +52,7 @@ function main()
 
     for (let i = 0; i < args.length; i++) {
         if (flags[args[i]])
-            flags[args[i]]();
+            flags[args[i]](args);
     }
 }
 
