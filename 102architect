@@ -14,7 +14,8 @@ function scaling(args)
     let nb2 = parseFloat(args[1]) * parseFloat(args[4]);
 
     ref_args = args.slice(3);
-    if (ref_args.length != 2)
+    if (ref_args.length != 2 || isNaN(args[0]) ||
+        isNaN(args[1]) || isNaN(args[3]) || isNaN(args[4]))
         process.exit(84);
     console.log(`Scaling by factors ${args[3]} and ${args[4]}`);
     console.log(`${parseFloat(args[3]).toFixed(2)}\t0.00\t0.00`);
@@ -53,7 +54,9 @@ function rotation(args)
 {
     let nb1 = parseFloat();
 
-    if (args.length < 4 || args.length > 4)
+    ref_args = args.slice(3);
+    if (ref_args.length != 1 || isNaN(args[0]) ||
+        isNaN(args[1]) || isNaN(args[3]) || isNaN(args[4]))
         process.exit(84);
     console.log(`Rotation by a ${args[3]} degree angle`);
     console.log(`1.00\t0.00\t${parseFloat(args[3]).toFixed(2)}`);
