@@ -31,7 +31,6 @@ def Pong(argv):
                 float(argv[i])
         except ValueError:
             sys.exit(84)
-    
     x0, y0, z0, x1, y1, z1, n = map(float, argv)
     if (n < 0):
         sys.exit(84)
@@ -46,9 +45,9 @@ def Pong(argv):
     coor_Y = Y * n + y1
     coor_Z = Z * n + z1
     print("({:.2f}, {:.2f}, {:.2f})".format(coor_X, coor_Y, coor_Z))
-    if (z1 >= 0 and coor_Z < 0):
+    if (z1 <= 0 and coor_Z < 0 or z1 >= 0 and coor_Z > 0):
         print("The incidence angle is:")
-        norme = math.sqrt(X ** 2 + Y **2 + Z ** 2)
+        norme = math.sqrt(X ** 2 + Y ** 2 + Z ** 2)
         angle = math.asin(abs(Z) / norme)
         angle_degrees = math.degrees(angle)
         angle_degrees = min(angle_degrees, 90)
