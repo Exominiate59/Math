@@ -1,0 +1,42 @@
+#!/usr/bin/env node
+
+/*
+** EPITECH PROJECT, 2024
+** B-MAT-100-LIL-1-1-102architect-arthur.vignes
+** File description:
+** 102architect.js
+*/
+
+const flags = {
+    '-t': translation,
+    '-z': scaling,
+    '-r': rotation,
+    '-s': reflection,
+    '-h': help,
+};
+
+function help(){
+    console.log("USAGE");
+    console.log("    ./102architect x y transfo1 arg11 [arg12] [transfo2 arg21 [arg22]] ...\n\n");
+    console.log("DESCRIPTION");
+    console.log("    x   abscissa of the original point");
+    console.log("    y   ordinate of the original point");
+    console.log("    transfo arg1 [arg2]");
+    console.log("    -t i j  translation along vector (i, j)");
+    console.log("    -z m n  scaling by factors m (x-axis) and n (y-axis)");
+    console.log("    -r d    rotation centered in O by a d degree angle");
+    console.log("    -s d    reflection over the axis passing through O with an inclination");
+    console.log("            angle of d degrees");
+}
+
+function main()
+{
+    const args = process.argv.slice(2);
+
+    for (let i = 0; i < args.length; i++) {
+        if (flags[args[i]])
+            flags[args[i]]();
+    }
+}
+
+main();
