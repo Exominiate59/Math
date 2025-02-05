@@ -1,34 +1,28 @@
 #!/usr/bin/env node
 
-/*
-** EPITECH PROJECT, 2024
-** B-MAT-100-LIL-1-1-102architect-arthur.vignes
-** File description:
-** 102architect.js
-*/
-
 const flags = {
-    // '-t': translation,
-    '-z': scaling,
-    // '-r': rotation,
-    // '-s': reflection,
+    '-t': translation,
+    //'-z': scaling,
+    //'-r': rotation,
+    //'-s': reflection,
     '-h': help,
 };
 
-function scaling(args)
+function translation(args)
 {
-    let nb1 = parseFloat(args[0]) * parseFloat(args[3]);
-    let nb2 = parseFloat(args[1]) * parseFloat(args[4]);
+    let nb1 = parseFloat(args[0]) + parseFloat(args[3]);
+    let nb2 = parseFloat(args[1]) + parseFloat(args[4]);
 
-    console.log(`Scaling by factors ${args[3]} and ${args[4]}`);
-    console.log(`${parseFloat(args[3]).toFixed(2)}\t0.00\t0.00`);
-    console.log(`0.00\t${parseFloat(args[3]).toFixed(2)}\t0.00`);
+    console.log(`Translation along vector (${args[3]}, ${args[4]})`);
+    console.log(`1.00\t0.00\t${parseFloat(args[3]).toFixed(2)}`);
+    console.log(`0.00\t1.00\t${parseFloat(args[4]).toFixed(2)}`);
     console.log(`0.00\t0.00\t1.00`);
     process.stdout.write(`(${parseFloat(args[0]).toFixed(2)}, `);
-    process.stdout.write(`${parseFloat(args[1]).toFixed(2)})`);
-    process.stdout.write(` => `);
-    process.stdout.write(`(${(nb1).toFixed(2)}, `);
-    process.stdout.write(`${(nb2).toFixed(2)})\n`);
+    process.stdout.write(`${parseFloat(args[1]).toFixed(2)})`)
+    process.stdout.write(" => ");
+    process.stdout.write(`(${nb1.toFixed(2)}, `);
+    process.stdout.write(`${nb2.toFixed(2)})`);
+    console.log("");
 }
 
 function help()
