@@ -8,6 +8,13 @@ const flags = {
     '-h': help,
 };
 
+function precision(value)
+{
+    let precise = (Math.abs(value) < 1e-9 ? 0 : value).toFixed(2);
+
+    return precise;
+}
+
 function reflection(args)
 {
     let x = parseFloat(args[0]);
@@ -22,12 +29,12 @@ function reflection(args)
         process.exit(84);
     process.stdout.write(`Reflection over an axis with an inclination angle`);
     process.stdout.write(` of ${args[3]} degrees\n`);
-    console.log(`${cos.toFixed(2)}\t${sin.toFixed(2)}\t0.00`);
-    console.log(`${sin.toFixed(2)}\t${(-cos).toFixed(2)}\t0.00`);
+    console.log(`${precision(cos)}\t${precision(sin)}\t0.00`);
+    console.log(`${precision(sin)}\t${precision(-cos)}\t0.00`);
     console.log(`0.00\t0.00\t1.00`);
     process.stdout.write(`(${x.toFixed(2)}, ${y.toFixed(2)}) => `);
-    process.stdout.write(`(${(x * cos + y * sin).toFixed(2)},`);
-    process.stdout.write(` ${(x * sin - y * cos).toFixed(2)})\n`);
+    process.stdout.write(`(${precision(x * cos + y * sin)},`);
+    process.stdout.write(` ${precision(x * sin - y * cos)})\n`);
     process.exit(0);
 }
 
@@ -42,7 +49,7 @@ function scaling(args)
         process.exit(84);
     console.log(`Scaling by factors ${args[3]} and ${args[4]}`);
     console.log(`${parseFloat(args[3]).toFixed(2)}\t0.00\t0.00`);
-    console.log(`0.00\t${parseFloat(args[3]).toFixed(2)}\t0.00`);
+    console.log(`0.00\t${parseFloat(args[4]).toFixed(2)}\t0.00`);
     console.log(`0.00\t0.00\t1.00`);
     process.stdout.write(`(${parseFloat(args[0]).toFixed(2)}, `);
     process.stdout.write(`${parseFloat(args[1]).toFixed(2)})`);
@@ -73,7 +80,6 @@ function translation(args)
     console.log("");
     process.exit(0);
 }
-
 
 function rotation(args)
 {
@@ -121,6 +127,7 @@ function help()
 function main()
 {
     const args = process.argv.slice(2);
+
     for (let i = 0; i < args.length; i++) {
         if (flags[args[i]])
             flags[args[i]](args);
