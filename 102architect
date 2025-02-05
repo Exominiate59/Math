@@ -1,12 +1,29 @@
 #!/usr/bin/env node
 
 const flags = {
-    // '-t': translation,
+    '-t': translation,
     '-z': scaling,
-    // '-r': rotation,
-    // '-s': reflection,
+    '-r': rotation,
+    '-s': reflection,
     '-h': help,
 };
+
+function reflection(args)
+{
+    let x = parseFloat(args[0]);
+    let y = parseFloat(args[1]);
+    let theta = parseFloat(args[3]) * (Math.PI / 180);
+    let cos = Math.cos(2 * theta);
+    let sin = Math.sin(2 * theta);
+
+    console.log(`Reflection over an axis with an inclination angle of ${args[3]} degrees`);
+    console.log(`${cos.toFixed(2)}\t${sin.toFixed(2)}\t0.00`);
+    console.log(`${sin.toFixed(2)}\t${(-cos).toFixed(2)}\t0.00`);
+    console.log(`0.00\t0.00\t1.00`);
+    process.stdout.write(`(${x.toFixed(2)}, ${y.toFixed(2)}) => `);
+    process.stdout.write(`(${(x * cos + y * sin).toFixed(2)},`);
+    process.stdout.write(` ${(x * sin - y * cos).toFixed(2)})\n`);
+}
 
 function scaling(args)
 {
