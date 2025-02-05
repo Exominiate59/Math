@@ -100,8 +100,8 @@ function rotation(args)
     process.stdout.write(`(${parseFloat(args[0]).toFixed(2)}, `);
     process.stdout.write(`${parseFloat(args[1]).toFixed(2)})`)
     process.stdout.write(" => ");
-    process.stdout.write(`(${(x * cos + y * sin).toFixed(2)}, `);
-    process.stdout.write(`${(x * sin - y * cos).toFixed(2)})`);
+    process.stdout.write(`(${(x * cos - y * sin).toFixed(2)}, `);
+    process.stdout.write(`${(x * sin + y * cos).toFixed(2)})`);
     console.log("");
     process.exit(0);
 }
